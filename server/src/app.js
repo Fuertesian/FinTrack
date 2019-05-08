@@ -9,9 +9,10 @@ app.use(morgan('combined'))
 app.use(bodyParser.json())
 app.use(cors())
 
-app.get('/status', (requ, res) => {
+// endpoints
+app.post('/register, (requ, res) => {
   res.send({
-    message: 'hello world' })
+    message: 'registration complete' })
 })
 const port = process.env.PORT || 8000
 app.listen(port)
