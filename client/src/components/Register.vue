@@ -1,18 +1,44 @@
 <template>
-  <div class = "register"> 
-    <h1>{{ msg }} </h1>
+  <div class = "register">
+    <h1> {{ msg }} </h1>
     <input
     type = "email"
     name = "email"
+    v-model = "email"
     placeholder ="email" />
-   </div>
+   <br>
+   <input
+    type = "password"
+    name = "passowrd"
+    v-model = "password"
+    placeholder = "password" />
+    <br>
+    <button @click="register">
+      Register
+      </button>
+    </div>
 </template>
-    
-   <script>
+<script>
+import authenticate from '@/services/authenticate'
 export default {
   name: 'Register',
   props: {
     msg: String
+
+  },
+  data () {
+    return {
+      email: '',
+      password: '' }
+  },
+  methods: {
+    async register () {
+      const response = await authenticate.register({
+        email: this.email,
+        password: this.password
+      })
+      console.log(response.data)
+    }
   }
 }
 </script>
