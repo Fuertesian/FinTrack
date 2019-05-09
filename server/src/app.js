@@ -1,9 +1,8 @@
-console.log('hello')
 const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const morgan = require('morgan')
-
+//express boilerplate
 const app = express()
 app.use(morgan('combined'))
 app.use(bodyParser.json())
@@ -14,7 +13,7 @@ app.get('/register', (req, res) => {
   res.send({
     message: 'registration complete' })
 })
-// post
+// post requests
 app.post('/register', (req, res) => {
   res.send({
     message: `${req.body.email} was registered`

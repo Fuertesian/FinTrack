@@ -25,7 +25,7 @@ export default new Router({
     {
       path: '/register',
       name: 'register',
-      component: Register
+      component: Register // created an endpoint and corresponding component called register
     }
   ]
 })
