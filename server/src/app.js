@@ -10,7 +10,7 @@ app.use(morgan('combined'))
 app.use(bodyParser.json())
 app.use(cors())
 
-require('./routes.js')(app) // pass app to routes.js
+require('./routes.js')(app) // calls the function app from router.js
 sequelize.sync() // sync the sequelize object with the app port
   .then(() => {
     app.listen(config.port)
