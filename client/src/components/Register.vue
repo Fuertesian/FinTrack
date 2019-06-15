@@ -17,6 +17,8 @@
     <button @click="register"> <!-- @click is shorthand for v-on:click send this input to register-->
       Register
       </button>
+      <br>
+      <div v-html="error"/>
     </div>
 </template>
 
@@ -35,20 +37,27 @@ export default {
     return { 
     // pass email and password data to the child component/when this imported
       email: '',
-      password: '' }
+      password: '',
+      error: null}
   },
   methods: {
     async register () { 
     // The Register component has a regesister method
-      const response = await authenticate.register({ // grab the register method from the imported authenticate file
-        email: this.email, 
-        // this refers to the Register object/component, grab the email data? Review this keyword***
-        password: this.password
-      }) 
-      // the () following register represents the credentials argument (see authenticate.js)
-      console.log(response.data) 
-      // print the data associated with the response
-    } // The execution of this funciton will send a post request to the /register endpoint of the server (server/src/app.js)
+    try 
+      { 
+        const response = await authenticate.register({ // grab the register method from the imported authenticate file
+          email: this.email, 
+          // this refers to the Register object/component, grab the email data? Review this keyword***
+          password: this.password
+        }) 
+        // the () following register represents the credentials argument (see authenticate.js)
+        console.log(response.data) 
+        // print the data associated with the response}
+    } catch (error) {
+      this.error = error.response.data.error
+    }
+     // The execution of this funciton will send a post request to the /register endpoint of the server (server/src/app.js)
+  }
   }
 }
 </script>
